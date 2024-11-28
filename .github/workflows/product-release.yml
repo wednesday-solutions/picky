@@ -95,7 +95,10 @@ jobs:
           echo "New version: $VERSION"
           PKG="github.com/wednesday-solutions/picky@$VERSION"
           echo "New package version: $PKG"
-          GOPROXY=proxy.golang.org go list -m $PKG
+          # GOPROXY=proxy.golang.org go list -m $PKG
+          LIST=$(go list -m $PKG)
+          echo "Go list: $LIST"
+          GOPROXY=proxy.golang.org $LIST
 
       - name: Create Product Release
         uses: actions/create-release@latest
